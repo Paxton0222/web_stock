@@ -1,0 +1,46 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+.venv
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# If using Git, exclude Git directory
+.git/
+
+# If using other VCS systems
+.svn/
+.bzr/
+CVS/
+
+# Exclude all log files and temp files
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.seed
+temp/
+
+# Exclude specific config files
+*.ini
+*.json
+
+# Exclude test directories
+tests/
+__pycache__/
+
+# Exclude directories used by popular IDEs
+.vscode/
+.idea/
+*.swp
