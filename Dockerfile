@@ -1,19 +1,20 @@
-# Use an official Python runtime as a parent image
-FROM python:3.12-slim
+FROM python:3.10.9-alpine
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Install any needed packages specified in requirements.txt
-COPY requirements.txt ./
-RUN apt update && apt install git -y
-RUN pip install --no-cache-dir -r requirements.txt
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Copy the current directory contents into the container at /usr/src/app
+COPY Pipfile Pipfile.lock ./
+RUN apk update && \
+    apk add git && \
+    pip install pipenv && \
+    pipenv --python `which python3` && \
+    pipenv install --system --deploy  && \
+    pipenv run twstock -U && \
+    apk --purge del apk-tools
+
 COPY . .
-
-# Make port 8000 available to the world outside this container
 EXPOSE 8000
 
-# Run app.py when the container launches
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

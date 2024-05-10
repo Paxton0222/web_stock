@@ -11,8 +11,8 @@ def get_stock_data(code: str = Query(str)):
 
 
 @app.get("/stock/multi")
-def get_multi_stock_data(codes: List[str] = Query([])):
-    return stock(codes)
+def get_multi_stock_data(code: List[str] = Query([])):
+    return stock(code)
 
 
 @app.get("/index")
